@@ -1,0 +1,122 @@
+/**
+ * @author Anton, Julius
+ */
+
+/* ------- OVERVIEW ------- */
+.overview {
+
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 900px;
+
+    /* internal padding */
+    padding: 10px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+
+}
+
+
+/* ------ PROJECTS ------ */
+.card {
+
+    margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+
+    border: black solid 1px;
+    background: white;
+    border-radius: 5px;
+    width: 900px;
+
+    /* link overflowing thing */
+    overflow: hidden;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 50px 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+    "title title edit link"
+    "desc desc status time"
+    "desc desc status time";
+}
+
+.title {
+    grid-area: title;
+    display: inline-block;
+
+
+    border-bottom: silver solid 1px;
+}
+
+.title h1 {
+
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 5px;
+    font-size: 18px;
+}
+
+.title p {
+    margin-left: 15px;
+    display: inline-block;
+}
+
+.edited {
+    grid-area: edit;
+    text-align: right;
+    padding-right: 10px;
+
+    font-size: 14px;
+    font-weight: bold;
+    color: #5f5f5f;
+
+    border-bottom: silver solid 1px;
+}
+
+.description {
+    grid-area: desc;
+    overflow-wrap: anywhere;
+
+    margin-left: 12px;
+}
+
+.time {
+    padding-left: 35px;
+    grid-area: time;
+}
+
+.status {
+    padding-left: 65px;
+    grid-area: status;
+}
+
+.link {
+    grid-area: link;
+    text-decoration: none;
+
+    display: grid;
+    place-items: center;
+    background: #194fa8;
+    color: white;
+
+    border-bottom: #194fa8 solid 1px;
+
+
+}
+
+/* ---- MISC ---- */
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+.link:hover {
+    background-color: #3368bd;
+    color: white;
+    transition: background-color .5s;
+}

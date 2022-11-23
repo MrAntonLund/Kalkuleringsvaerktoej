@@ -1,0 +1,255 @@
+/**
+ * @author Anton
+ */
+
+.project-container {
+
+    /* align-items: center; */
+    /* justify-items: center; */
+
+    margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    /* margin-left: 20%;
+    margin-right: 20%;*/
+
+
+    width: 900px;
+    /* border: white solid 5px;
+    background-color: cornsilk; */
+
+    display: grid;
+    grid-template-columns: 300px 300px 300px;
+    grid-template-rows: 175px 1fr 1fr;
+    gap: 15px 15px;
+    grid-template-areas:
+    "info desc deadline"
+    "users tasks tasks"
+    "users tasks tasks";
+}
+
+.project-container > * {
+    /* box & border for all classes */
+    border-radius: 5px;
+    border: black solid 1px;
+    background-color: white;
+    box-shadow: 5px 5px 15px -10px #000000;
+
+    /* internal padding */
+    padding: 10px;
+}
+
+/* --- all h1 in boxes --- */
+.project-container > * h1 {
+    margin-top: 0px;
+    margin-bottom: 5px;
+
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
+    color: #292a32;
+}
+
+p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* --- top-left box --- */
+.info {
+    grid-area: info;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 5px 5px;
+    grid-template-areas:
+    "title owner"
+    "status status"
+}
+
+.title {
+    grid-area: title;
+    overflow-wrap: anywhere;
+
+}
+
+.owner {
+    grid-area: owner;
+}
+
+.status {
+    grid-area: status;
+}
+
+.status p, .status form {
+    display: inline-block;
+}
+
+/* ----------------------- */
+
+/* top middle and right box */
+.description {
+    grid-area: desc;
+    overflow-wrap: anywhere;
+}
+
+.deadline {
+    grid-area: deadline;
+}
+
+/* bottom 2 boxes */
+.users {
+    grid-area: users;
+}
+
+.users li {
+    padding-left: 10px;
+}
+
+.users ul {
+    list-style-type: none;
+}
+
+/* --- subgrid for tasks --- */
+.tasks {
+    grid-area: tasks;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+}
+
+.tasks ul {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid silver;
+}
+
+.tasks > h1 {
+    padding-left: 10px;
+}
+
+.tasks > form {
+    padding-left: 10px;
+}
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 200px 50px 150px 50px 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+    "title time hours price currency status";
+}
+
+
+.title-task {
+    grid-area: title;
+    padding-left: 10px;
+    display: inline-block;
+    text-overflow: ellipsis;
+}
+
+.title-task a {
+    display: inline-block;
+    text-overflow: ellipsis;
+}
+
+.title-task p {
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.time {
+    grid-area: time;
+    text-align: right;
+    text-overflow: ellipsis;
+}
+
+.hours {
+    padding-left: 5px;
+    grid-area: hours;
+}
+
+.currency {
+    padding-left: 5px;
+    grid-area: currency;
+}
+
+.price {
+    grid-area: price;
+    text-align: right;
+
+    text-overflow: ellipsis;
+}
+
+.status-task {
+    grid-area: status;
+    margin-left: auto;
+    padding-right: 10px;
+}
+
+/* ------------------- */
+/* ----- small grid for total overview -----*/
+.total-overview {
+
+    border-top: 1px solid black;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    display: grid;
+    grid-template-columns: 200px 50px 150px 50px 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+    "total-text total-T hours-text total-P currency-text";
+}
+
+
+.total{
+    padding-left: 10px;
+    grid-area: total-text;
+}
+.totalTime {
+    grid-area: total-T;
+    text-align: right;
+    text-decoration-line: underline;
+    text-decoration-style: double;
+}
+
+.totalHours {
+    grid-area: hours-text;
+    padding-left: 5px;
+}
+
+.totalPrice {
+    grid-area: total-P;
+    text-align: right;
+    text-decoration-line: underline;
+    text-decoration-style: double;
+
+}
+
+.totalCurrency {
+    grid-area: currency-text;
+    padding-left: 5px;
+}
+/* ------------------------- */
+
+
+/* --- misc --- */
+
+.tasks ul:hover {
+    background: #e2e2ef;
+}
+
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+

@@ -1,0 +1,16 @@
+<!-- @author Carsten -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head.html(currentPage='Error', customCSS='error.css')"></head>
+<body>
+<header th:replace="fragments/header.html"></header>
+<section id="errorpage">
+    <h1>Error page</h1>
+    <img th:src="@{/images/Swing.jpg}" alt="duck on a swing">
+    <p>You are in the wrong neighbourhood, buddy.</p>
+    <p>Head back to the dashboard with the link at the top.</p>
+</section>
+
+<footer th:replace="fragments/footer.html"></footer>
+</body>
+</html>

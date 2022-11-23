@@ -1,0 +1,24 @@
+<!-- @author Anton, Julius, Carsten -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<header>
+
+
+    <!-- breadcrumb -->
+    <a href="/view/dashboard">
+        <h1>Dashboard</h1>
+    </a>
+    <h1 th:unless="${currentPage1 == null}"> / </h1>
+
+    <a th:href="${'/view/'+ currentPage1}" th:unless="${currentPage1 == null}">
+        <h1 th:text="${currentPage1}"></h1>
+    </a>
+    <h1 th:unless="${currentPage2 == null}"> / </h1>
+    <a th:href="${'/view/'+ currentPage1 +'/' + currentPage2}" th:unless="${currentPage2 == null}">
+
+        <h1 th:text="${currentPage2}"></h1>
+    </a>
+    <!-- breadcrumb -->
+
+</header>
+</html>

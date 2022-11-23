@@ -1,0 +1,51 @@
+<!-- @author Anton, Julius, Carsten -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head.html(currentPage='Edit Task', customCSS='viewtask.css')"></head> <!-- custom title + bonus css-->
+<header th:replace="fragments/header.html(currentPage1=${projectTitle}, currentPage2=${task.getTitle})"></header>
+<body>
+<main>
+
+    <!-- NEW -->
+    <section class="task">
+
+        <section class="title">
+            <h1 th:text="${task.getTitle}"></h1>
+        </section>
+
+        <section class="edited">
+            🕒︎ created on 20-04-21 <!-- placeholder -->
+        </section>
+
+        <section class="status">
+            <p th:text="${task.isFinished()} ? '✔️[task completed]' : '⭕[task open]'"></p>
+
+            <form action="/deletetask" method="post">
+                <input type="hidden" name="projectTitle" th:value="${projectTitle}">
+                <button type="submit" name="taskID" th:value="${task.getID}">Delete task</button>
+            </form>
+        </section>
+
+        <section class="description">
+            <p th:text="${task.getDescription}"></p>
+        </section>
+
+        <section class="price">
+            <p th:text="${'Allotted time: ' + task.getTime + ' HOURS'}"></p>
+            <p th:text="${'Approximate price: ' + task.getPrice + ' DKK'}"></p>
+
+        </section>
+
+        <section class="users">
+            <p>Assigned users:</p>
+            <ul th:each="user : ${users}">
+                <li th:text="${user.getFirstname + ' ' + user.getLastname + ' - ' + user.getRole}"></li>
+            </ul>
+        </section>
+
+    </section>
+
+</main>
+<footer th:replace="fragments/footer.html"></footer>
+</body>
+</html>

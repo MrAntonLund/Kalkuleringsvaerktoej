@@ -1,0 +1,130 @@
+<!-- @author Anton, Julius, Carsten -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head.html(currentPage='Edit Project', customCSS='viewproject.css')"></head>
+<!-- custom title + bonus css-->
+<header th:replace="fragments/header.html(currentPage1=${project.getTitle})"></header>
+<body>
+<main>
+
+
+    <section class="project-container">
+
+        <section class="info">
+
+            <section class="title">
+                <h1>project name</h1>
+                <p th:text="${project.getTitle}"></p>
+            </section>
+            <section class="owner">
+                <h1>Project owner</h1>
+                <p>Anton Bjoern Lund</p> <!--placeholder -->
+            </section>
+
+            <section class="status">
+                <h1>project status</h1>
+                <form action="/change_project_status" method="post">
+                    <button type="submit" name="projectTitle" th:value="${project.getTitle}" th:text="${project.isFinished()} ? 'Open' : 'Closed'"></button>
+                </form>
+
+                <p th:if="${project.isFinished() == true}">🟢</p>
+                <p th:if="${project.isFinished() == false}">🔴</p>
+
+                <form action="/deleteproject" method="post">
+                    <button type="submit" name="projectTitle" th:value="${project.getTitle}">⚠ Delete project</button>
+                </form>
+            </section>
+
+        </section>
+
+        <section class="description">
+            <h1>Description</h1>
+            <p th:text="${project.getDescription}"></p>
+        </section>
+
+        <section class="deadline">
+            <h1>Project dates</h1>
+            <p th:text="${project.getStartDateAsString + ' ➝ ' + project.getDeadlineAsString}"></p>
+            <hr>
+            <span th:if="${project.countdown > 0}"> <!-- if the deadline have passed it won't show any of the following -->
+
+                <p th:text="${'Days remaining: ' + project.countdown}"></p>
+
+                <p th:if="${time <= 7 and time > 0}" th:text="'Working hours per day: ' + ${#numbers.formatDecimal(time, 0,2)}"></p>
+                <p th:if="${time == 0}">All tasks are done!</p>
+
+                <span th:if="${time > 7}">
+                    <p id="time-issue" th:text="'Working hours per day: ' + ${#numbers.formatDecimal(time, 0,2)}"></p>
+                    <p>⚠ Warning: Can't be completed in time</p>
+                </span>
+            </span>
+            <p th:if="${project.countdown <= 0}" id="time-deadline">Deadline have passed</p>
+            <p th:if="${project.countdown <= 0 and time == 0}">All tasks are done!</p>
+        </section>
+
+        <section class="users">
+            <h1>Assigned users</h1>
+            <ul th:each="users : ${users}">
+                <li th:text="${users.getFirstname + ' ' + users.getLastname}"></li>
+                <li th:text="${users.getRole}"></li>
+            </ul>
+        </section>
+
+        <section class="tasks">
+            <h1>tasks for project</h1>
+
+            <form th:action="@{/view/{project}/createtask (project=${project.getTitle})}" method="get">
+                <button type="submit">Create task</button>
+            </form>
+
+
+            <!-- new -->
+            <ul th:each="task : ${tasks}">
+                <section class="grid-container">
+
+                    <section class="title-task">
+                        <a th:href="@{/view/{projectTitle}/{taskTitle} (projectTitle=${project.getTitle}, taskTitle=${task.getTitle})}">
+                            <p th:text="${task.getTitle}"></p>
+                        </a>
+                    </section>
+
+                    <section class="time">
+                        <p th:text="${task.getTime}"></p>
+                    </section>
+
+                    <p class="hours">Hours</p>
+
+                    <section class="price">
+                        <p th:text="${task.getPrice}"></p>
+                    </section>
+
+                    <p class="currency">DKK</p>
+
+                    <section class="status-task">
+                        <form action="/change_finished_status" method="post">
+                            <input type="hidden" name="projectTitle" th:value="${project.getTitle}">
+                            <button type="submit" name="taskID" th:value="${task.getID}">
+                                <p th:text="${task.printIsFinished()}"></p></button>
+                        </form>
+                    </section>
+
+                </section>
+            </ul>
+
+            <section class="total-overview">
+                <p class="total">Total:</p>
+                <p class="totalPrice" th:text="${totalPrice}"></p>
+                <p class="totalCurrency"> DKK</p>
+                <p class="totalTime" th:text="${totalHours}"></p>
+                <p class="totalHours"> Hours</p>
+            </section>
+
+        </section>
+
+    </section>
+
+
+</main>
+<footer th:replace="fragments/footer.html"></footer>
+</body>
+</html>

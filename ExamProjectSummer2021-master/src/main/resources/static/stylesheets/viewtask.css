@@ -1,0 +1,89 @@
+/**
+ * @author Anton
+ */
+
+.task {
+
+    margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+
+    border: black solid 1px;
+    background: white;
+    border-radius: 5px;
+    width: 750px;
+
+    /* link overflowing thing */
+    overflow: hidden;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 175px 150px;
+    grid-template-rows: 100px auto 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+    "title title edited status"
+    "desc desc price price"
+    "users users users users";
+}
+
+.title {
+    grid-area: title;
+    border-bottom: silver solid 1px;
+}
+
+.title h1 {
+    margin-top: 14px;
+    margin-left: 20px;
+    font-size: 18px;
+}
+
+.description {
+    grid-area: desc;
+    padding-left: 12px;
+
+    border-bottom: silver solid 1px;
+
+}
+
+.edited {
+    grid-area: edited;
+    text-align: right;
+    padding-right: 10px;
+    padding-top: 15px;
+
+    font-size: 14px;
+    font-weight: bold;
+    color: #5f5f5f;
+
+    border-bottom: silver solid 1px;
+}
+
+.status {
+    grid-area: status;
+    text-align: center;
+    border-bottom: silver solid 1px;
+    border-left: silver solid 1px;
+
+}
+
+.price {
+    grid-area: price;
+    text-align: left;
+    padding-left: 45px;
+    border-left: silver solid 1px;
+    border-bottom: silver solid 1px;
+
+}
+
+.users {
+    grid-area: users;
+    text-align: center;
+}
+
+
+
+/* ---- MISC ---- */
+ul {
+    padding: 0;
+    list-style-type: none;
+}

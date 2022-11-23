@@ -1,0 +1,70 @@
+/**
+ * @author Anton, Julius
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Padauk&display=swap');
+
+html {
+    font-family: 'Padauk', sans-serif;
+    background: rgb(234,234,234);
+
+    /* makes scroll-bar not move html content */
+    overflow-y: scroll;
+
+}
+
+header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    margin-left: auto;
+    margin-right: auto;
+    width: 900px;
+    height: 65px;
+
+    color: black;
+    /* background: #24292E; */
+    border-bottom: 5px solid #194fa8 ;
+    margin-bottom: 25px;
+}
+
+header a {
+    text-decoration: none;
+}
+
+header h1 {
+    margin: 6px;
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+header a:hover {
+    border-bottom: 2px solid black;
+}
+
+
+body {
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+footer {
+    width: 500px;
+    margin-top: 25px;
+    text-align: center;
+    color: black;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#errorpage{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 900px;
+    text-align: center;
+}

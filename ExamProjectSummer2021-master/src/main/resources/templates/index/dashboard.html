@@ -1,0 +1,77 @@
+<!-- @author Anton, Julius, Carsten -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head.html(currentPage='Dashboard', customCSS='dashboard.css')"></head>
+<!-- custom title + bonus css-->
+<body>
+<header th:replace="fragments/header.html"></header>
+<main>
+
+    <!-- ----- top ----- -->
+
+    <section class="overview">
+
+        <section class="projects-overview">
+            <h1>Projects:</h1>
+            <p th:text="${list.size + ' in total'}"></p>
+            <p>🟢 3 open</p> <!-- placeholder -->
+            <p>🔴 9 closed</p> <!-- placeholder -->
+        </section>
+
+        <section class="users-overview">
+            <h1>Employees:</h1>
+            <p th:text="${users.size + ' in total'}"></p>
+        </section>
+
+        <section class="create-project">
+            <h1>Create:</h1>
+            <a href="/view/createproject">
+                <button>New project</button>
+            </a>
+        </section>
+    </section>
+
+    <!-- ----- projects ---- -->
+
+    <!-- NEW -->
+    <section class="projects">
+        <ul th:each="list : ${list}">
+
+            <section class="card">
+                <section class="title">
+                    <p th:if="${list.isFinished() == true}">🟢</p>
+                    <p th:if="${list.isFinished() == false}">🔴</p>
+                    <h1 th:text="${list.getTitle}"></h1>
+                </section>
+
+                <section class="edited">
+                    <p>🕒︎ last updated on 01-01-1970</p> <!-- placeholder -->
+                </section>
+                <section class="description">
+                    <p th:text="${list.getDescription}"></p>
+
+                </section>
+                <section class="status">
+                    <p th:text="${list.getTasksStatus + ' tasks done'}"></p>
+
+                </section>
+                <section class="time">
+                    <p th:text="${'Deadline: ' + list.getDeadlineAsString}"></p>
+                    <p th:if="${list.countdown == 1}" th:text="${list.countdown + ' day left!'}"></p>
+                    <p th:if="${list.countdown > 1}" th:text="${list.countdown + ' days left'}"></p>
+                    <p th:if="${list.countdown <= 0}">Deadline passed</p>
+
+                </section>
+
+
+                <a class="link" th:href="@{'/view/{projectTitle}' (projectTitle = ${list.getTitle})}">details ↗</a>
+
+            </section>
+
+        </ul>
+    </section>
+
+</main>
+<footer th:replace="fragments/footer.html"></footer>
+</body>
+</html>

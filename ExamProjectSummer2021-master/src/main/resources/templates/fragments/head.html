@@ -1,0 +1,15 @@
+<!-- @author Anton, Julius, Carsten -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+
+    <!-- GLOBAL !-->
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/stylesheets/global.css}">
+
+    <!-- CUSTOM !-->
+    <title th:text="${currentPage}"></title>
+    <link rel="stylesheet" th:href="@{'/stylesheets/' + ${customCSS}}">
+
+</head>
+</html>

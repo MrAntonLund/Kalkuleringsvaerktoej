@@ -1,0 +1,71 @@
+<!-- @author Anton, Julius, Carsten -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head.html(currentPage='Create Project', customCSS='createproject.css')"></head>
+<!-- custom title + bonus css-->
+<header th:replace="fragments/header.html(currentPage1='createproject')"></header>
+<body>
+<main>
+
+    <!-- NEW -->
+    <form class="form" id="projectcreation" onsubmit="return createProject()" action="/createproject" method="post">
+
+        <!-- info for form -->
+        <input type="text" class="title" name="title" id="title"
+               placeholder="Project name" required maxlength="40">
+        <textarea class="description" name="description" id="description"
+                  placeholder="Project description" maxlength="150" required></textarea>
+        <section class="startdate">
+            <label class="startdate-label" for="startdate">Startdate: </label>
+            <input type="date" name="startdate" id="startdate" required>
+        </section>
+        <section class="deadline">
+            <label class="deadline-label" for="deadline">Deadline: </label>
+            <input type="date" name="deadline" id="deadline" required>
+        </section>
+
+        <!-- list of all users -->
+        <section class="search">
+            <input type="text" id="myInput" onkeyup="filterSearch()" placeholder="Search for user">
+        </section>
+        <section class="users1">
+            <ul id="myUL">
+                <div th:each="user : ${allUsers}">
+                    <li class="moveWorker">
+                        <a href="#">
+                            <input type="hidden" name="username" th:value="${user.getUsername}" disabled>
+                            <p th:text="${user.getFirstname + ' ' + user.getLastname + ' - ' + user.getRole}"></p>
+                        </a>
+                    </li>
+                </div>
+            </ul>
+        </section>
+
+        <!-- selected users for project -->
+        <section class="users2-p">
+            <p>Assigned users:</p>
+        </section>
+        <section class="users2">
+            <ul id="assignedUsers">
+
+            </ul>
+        </section>
+
+        <!-- buttons -->
+        <button type="submit" class="confirm">
+            <span class="front">CONFIRM</span>
+        </button>
+        <button class="reset" type="reset">
+            <span class="front">RESET</span>
+        </button>
+    </form>
+
+
+</main>
+<footer th:replace="fragments/footer.html"></footer>
+<script th:src="@{/scripts/createproject.js}"></script>
+<script th:src="@{/scripts/filtersearch.js}"></script>
+<script th:src="@{/scripts/moveitem.js}"></script>
+<script th:inline="javascript">let list = [[${projectTitles}]];</script> <!-- title list -->
+</body>
+</html>

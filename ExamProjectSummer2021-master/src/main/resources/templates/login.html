@@ -1,0 +1,24 @@
+<!-- @author Carsten -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head.html(currentPage='Login')"></head> <!-- custom title !-->
+<head th:replace="fragments/head.html(customCSS='/stylesheets/placeholder.css')"></head> <!-- custom CSS !-->
+<header th:replace="fragments/header.html"></header>
+<body>
+<main>
+
+    <form action="/validateLogin" method="post">
+
+        <input required type="text" name="username" id="username" placeholder="Username">
+        <input required type="password" name="password" id="password" placeholder="Password">
+        <button type="submit">Login</button>
+        <p th:if="${loginFailed}">Username or password incorrect</p>
+
+    </form>
+
+
+
+</main>
+<footer th:replace="fragments/footer.html"></footer>
+</body>
+</html>
